@@ -1,0 +1,16 @@
+[package]
+name = "portfolio"
+version = "0.1.0"
+edition = "2021"
+authors= ["Andreas Barbesgaard <Abarbesgaard@gmail.com>"]
+repository = "https://www.github.com/abarbesgaard/portfolio"
+
+[[bin]]
+name = "CV"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5.46", features = ["derive"] }
+ratatui = "0.28.0"
+crossterm = "0.28"
+uuid =  {version = "1.0", features = ["v4", "serde"] }
