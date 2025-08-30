@@ -28,7 +28,10 @@ impl Args {
                 }
             }
             Command::ContactInfo => {
-                println!("Showing contactInformaion")
+                println!("Showing contactInformaion");
+                if let Err(e) = view::contact_information_view() {
+                    eprintln!("Error displaying contact information: {}", e);
+                }
             }
         }
     }

@@ -27,6 +27,13 @@ pub struct PersonalInformation {
 }
 
 #[derive(Debug)]
+pub struct ContactInformation {
+    pub id: Uuid,
+    pub email: String,
+    pub phone_number: String,
+}
+
+#[derive(Debug)]
 pub struct Link {
     pub id: Uuid,
     pub name: String,
