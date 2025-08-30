@@ -28,11 +28,19 @@ impl ContactInformation {
             "+45 21 76 26 15".to_string(),
         )
     }
+    fn quit_string() -> Line<'static> {
+        Line::from(vec![Span::styled(
+            "Press q to quit",
+            Style::default().add_modifier(Modifier::ITALIC),
+        )])
+    }
 
     pub fn display_widget(frame: &mut Frame, area: Rect) {
         let title: String = String::from("Contact Information");
         let c_info = Self::c_info();
+
         let text = vec![
+            Self::quit_string(),
             Line::from(vec![
                 Span::styled("Email: ", Style::default().add_modifier(Modifier::BOLD)),
                 Span::raw(format!("{}", c_info.email)),

@@ -6,7 +6,7 @@ authors= ["Andreas Barbesgaard <Abarbesgaard@gmail.com>"]
 repository = "https://www.github.com/abarbesgaard/portfolio"
 
 [[bin]]
-name = "CV"
+name = "portfolio"
 path = "src/main.rs"
 
 [dependencies]
