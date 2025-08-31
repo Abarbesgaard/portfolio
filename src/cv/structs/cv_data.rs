@@ -5,6 +5,7 @@ pub struct AllInformation {
     pub id: Uuid,
     pub personal_information: PersonalInformation,
     pub contact_information: ContactInformation,
+    pub experience_list: Vec<Experience>,
 }
 
 #[derive(Debug)]
@@ -17,8 +18,9 @@ pub struct Skill {
 pub struct Experience {
     pub id: Uuid,
     pub title: String,
-    pub short_description: String,
     pub description: String,
+    pub start_date: String,
+    pub end_date: String,
     pub skills: Vec<Skill>,
 }
 
@@ -30,7 +32,6 @@ pub struct PersonalInformation {
     pub title: String,
     pub age: u8,
     pub tag_line: String,
-    pub description: String,
     pub short_description: String,
 }
 

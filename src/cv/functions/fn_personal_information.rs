@@ -20,7 +20,6 @@ impl PersonalInformation {
         title: String,
         age: u8,
         tag_line: String,
-        description: String,
         short_description: String,
     ) -> Self {
         Self {
@@ -30,7 +29,6 @@ impl PersonalInformation {
             title,
             age,
             tag_line,
-            description,
             short_description,
         }
     }
@@ -43,7 +41,6 @@ impl PersonalInformation {
             "Software Developer".to_string(),
             36,
             "best dev ever".to_string(),
-            "test description".to_string(),
             "test short description".to_string(),
         )
     }
@@ -71,10 +68,6 @@ impl PersonalInformation {
                         .add_modifier(Modifier::BOLD),
                 ),
                 Span::raw(&p_info.tag_line),
-            ]),
-            Line::from(vec![
-                Span::styled("Description: ", Style::default().fg(Color::Yellow)),
-                Span::raw(&p_info.description),
             ]),
             Line::from(vec![
                 Span::styled("Short Description: ", Style::default().fg(Color::Green)),
