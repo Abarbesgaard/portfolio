@@ -1,5 +1,6 @@
-use crate::ui::view;
 use clap::{Parser, Subcommand};
+
+use crate::cv::structs::cv_data::AllInformation;
 
 #[derive(Parser, Debug)]
 #[command(name = "Portfolio")]
@@ -27,21 +28,13 @@ impl Args {
         match args.command {
             Command::All => {
                 println!("Showing all information");
-                if let Err(e) = view::show_all_view() {
-                    eprintln!("Error displaying all information, {}", e);
-                }
+                AllInformation::display();
             }
             Command::PersonalInfo => {
                 println!("Showing personal information");
-                if let Err(e) = view::personal_information_view() {
-                    eprintln!("Error displaying portfolio: {}", e);
-                }
             }
             Command::ContactInfo => {
                 println!("Showing contactInformaion");
-                if let Err(e) = view::contact_information_view() {
-                    eprintln!("Error displaying contact information: {}", e);
-                }
             }
         }
     }
