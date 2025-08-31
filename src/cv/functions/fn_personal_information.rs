@@ -17,6 +17,7 @@ impl PersonalInformation {
         id: Uuid,
         first_name: String,
         last_name: String,
+        title: String,
         age: u8,
         tag_line: String,
         description: String,
@@ -26,6 +27,7 @@ impl PersonalInformation {
             id,
             first_name,
             last_name,
+            title,
             age,
             tag_line,
             description,
@@ -38,6 +40,7 @@ impl PersonalInformation {
             Uuid::new_v4(),
             "Andreas".to_string(),
             "Barbesgaard".to_string(),
+            "Software Developer".to_string(),
             36,
             "best dev ever".to_string(),
             "test description".to_string(),
@@ -51,6 +54,10 @@ impl PersonalInformation {
             Line::from(vec![
                 Span::styled("Name: ", Style::default().add_modifier(Modifier::BOLD)),
                 Span::raw(format!("{} {}", p_info.first_name, p_info.last_name)),
+            ]),
+            Line::from(vec![
+                Span::styled("Title: ", Style::default().add_modifier(Modifier::BOLD)),
+                Span::raw(format!("{}", p_info.title)),
             ]),
             Line::from(vec![
                 Span::styled("Age: ", Style::default().add_modifier(Modifier::BOLD)),

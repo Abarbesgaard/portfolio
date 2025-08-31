@@ -5,4 +5,3 @@ pub mod ui;
 fn main() {
     commands::commands::Args::execute();
 }
-

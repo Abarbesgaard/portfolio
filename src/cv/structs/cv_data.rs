@@ -1,6 +1,13 @@
 use uuid::Uuid;
 
 #[derive(Debug)]
+pub struct AllInformation {
+    pub id: Uuid,
+    pub personal_information: PersonalInformation,
+    pub contact_information: ContactInformation,
+}
+
+#[derive(Debug)]
 pub struct Skill {
     pub id: Uuid,
     pub name: String,
@@ -20,6 +27,7 @@ pub struct PersonalInformation {
     pub id: Uuid,
     pub first_name: String,
     pub last_name: String,
+    pub title: String,
     pub age: u8,
     pub tag_line: String,
     pub description: String,
