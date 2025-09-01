@@ -152,7 +152,6 @@ impl Experience {
     }
     pub fn display_detailed_experience(number: u32) {
         let experience_list = Experience::info();
-        println!("Extreme details");
         for experience in experience_list.iter() {
             if number == experience.id {
                 println!("\t{} -> {}", "Id".bold(), experience.id);
