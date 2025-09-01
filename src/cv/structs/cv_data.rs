@@ -1,8 +1,6 @@
-use uuid::Uuid;
-
 #[derive(Debug)]
 pub struct AllInformation {
-    pub id: Uuid,
+    pub id: u32,
     pub personal_information: PersonalInformation,
     pub contact_information: ContactInformation,
     pub experience_list: Vec<Experience>,
@@ -10,23 +8,24 @@ pub struct AllInformation {
 
 #[derive(Debug)]
 pub struct Skill {
-    pub id: Uuid,
+    pub id: u32,
     pub name: String,
-    pub description: String,
 }
+
 #[derive(Debug)]
 pub struct Experience {
-    pub id: Uuid,
+    pub id: u32,
     pub title: String,
     pub description: String,
     pub start_date: String,
     pub end_date: String,
+    pub duration: String,
     pub skills: Vec<Skill>,
 }
 
 #[derive(Debug)]
 pub struct PersonalInformation {
-    pub id: Uuid,
+    pub id: u32,
     pub first_name: String,
     pub last_name: String,
     pub title: String,
@@ -37,14 +36,14 @@ pub struct PersonalInformation {
 
 #[derive(Debug)]
 pub struct ContactInformation {
-    pub id: Uuid,
+    pub id: u32,
     pub email: String,
     pub phone_number: String,
 }
 
 #[derive(Debug)]
 pub struct Link {
-    pub id: Uuid,
+    pub id: u32,
     pub name: String,
     pub reference: String,
     pub description: String,
@@ -52,7 +51,7 @@ pub struct Link {
 
 #[derive(Debug)]
 pub struct Education {
-    pub id: Uuid,
+    pub id: u32,
     pub name: String,
     pub description: String,
     pub skills: Vec<Skill>,

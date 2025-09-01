@@ -10,8 +10,9 @@ name = "portfolio"
 path = "src/main.rs"
 
 [dependencies]
+inquire = "0.7.5"
+opener = "0.6"
+urlencoding = "2.1"
 clap = { version = "4.5.46", features = ["derive"] }
-ratatui = "0.28.0"
-crossterm = "0.28"
 uuid =  {version = "1.0", features = ["v4", "serde"] }
-tui-scrollview = "0.5.1"
+colored = "*"

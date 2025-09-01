@@ -1,20 +1,8 @@
 use crate::cv::structs::cv_data::PersonalInformation;
-use crossterm::{
-    event::{self, Event, KeyCode},
-    execute,
-    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
-};
-use ratatui::{
-    backend::CrosstermBackend,
-    prelude::*,
-    widgets::{Block, Borders, Paragraph, Wrap},
-    Terminal,
-};
-use uuid::Uuid;
 
 impl PersonalInformation {
     pub fn new(
-        id: Uuid,
+        id: u32,
         first_name: String,
         last_name: String,
         title: String,
@@ -35,7 +23,7 @@ impl PersonalInformation {
 
     fn p_info() -> PersonalInformation {
         PersonalInformation::new(
-            Uuid::new_v4(),
+            1,
             "Andreas".to_string(),
             "Barbesgaard".to_string(),
             "Software Developer".to_string(),
@@ -45,67 +33,7 @@ impl PersonalInformation {
         )
     }
 
-    pub fn display_widget(frame: &mut Frame, area: Rect) {
-        let p_info = Self::p_info();
-        let text = vec![
-            Line::from(vec![
-                Span::styled("Name: ", Style::default().add_modifier(Modifier::BOLD)),
-                Span::raw(format!("{} {}", p_info.first_name, p_info.last_name)),
-            ]),
-            Line::from(vec![
-                Span::styled("Title: ", Style::default().add_modifier(Modifier::BOLD)),
-                Span::raw(format!("{}", p_info.title)),
-            ]),
-            Line::from(vec![
-                Span::styled("Age: ", Style::default().add_modifier(Modifier::BOLD)),
-                Span::raw(format!("{}", p_info.age)),
-            ]),
-            Line::from(vec![
-                Span::styled(
-                    "Tag: ",
-                    Style::default()
-                        .fg(Color::Cyan)
-                        .add_modifier(Modifier::BOLD),
-                ),
-                Span::raw(&p_info.tag_line),
-            ]),
-            Line::from(vec![
-                Span::styled("Short Description: ", Style::default().fg(Color::Green)),
-                Span::raw(&p_info.short_description),
-            ]),
-        ];
-        let block = Block::default().title("Profile").borders(Borders::ALL);
-        let paragraph = Paragraph::new(text).block(block).wrap(Wrap { trim: true });
-        frame.render_widget(paragraph, area);
-    }
-
-    // Standalone display method with no parameters
-    pub fn display() -> Result<(), std::io::Error> {
-        enable_raw_mode()?;
-        let mut stdout = std::io::stdout();
-        execute!(stdout, EnterAlternateScreen)?;
-        let backend = CrosstermBackend::new(stdout);
-        let mut terminal = Terminal::new(backend)?;
-
-        loop {
-            terminal.draw(|f| {
-                let area = f.area();
-                Self::display_widget(f, area);
-            })?;
-
-            // wait for input
-            if let Event::Key(key_event) = event::read()? {
-                if key_event.code == KeyCode::Char('q') {
-                    break;
-                }
-            }
-        }
-
-        // restore terminal
-        disable_raw_mode()?;
-        execute!(terminal.backend_mut(), LeaveAlternateScreen)?;
-        terminal.show_cursor()?;
-
-        Ok(())
+    pub fn display_widget() {
+        let _info = PersonalInformation::p_info();
     }
 }

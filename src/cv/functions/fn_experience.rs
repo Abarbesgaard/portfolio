@@ -1,13 +1,13 @@
 use crate::cv::structs::cv_data::{Experience, Skill};
-use uuid::Uuid;
 
 impl Experience {
     pub fn new(
-        id: Uuid,
+        id: u32,
         title: String,
         description: String,
         start_date: String,
         end_date: String,
+        duration: String,
         skills: Vec<Skill>,
     ) -> Experience {
         Experience {
@@ -16,6 +16,7 @@ impl Experience {
             description,
             start_date,
             end_date,
+            duration,
             skills,
         }
     }
