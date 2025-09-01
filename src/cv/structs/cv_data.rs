@@ -10,16 +10,20 @@ pub struct AllInformation {
 pub struct Skill {
     pub id: u32,
     pub name: String,
+    pub description: String,
 }
 
 #[derive(Debug)]
 pub struct Experience {
     pub id: u32,
     pub title: String,
+    pub company_name: String,
     pub description: String,
+    pub detailed_description: String,
     pub start_date: String,
     pub end_date: String,
     pub duration: String,
+    pub link: Link,
     pub skills: Vec<Skill>,
 }
 
@@ -38,7 +42,6 @@ pub struct PersonalInformation {
 pub struct ContactInformation {
     pub id: u32,
     pub email: String,
-    pub phone_number: String,
 }
 
 #[derive(Debug)]
@@ -46,7 +49,6 @@ pub struct Link {
     pub id: u32,
     pub name: String,
     pub reference: String,
-    pub description: String,
 }
 
 #[derive(Debug)]

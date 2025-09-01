@@ -1,4 +1,6 @@
-use crate::cv::structs::cv_data::AllInformation;
+use crate::cv::structs::cv_data::{
+    AllInformation, ContactInformation, Experience, PersonalInformation,
+};
 use clap::{Parser, Subcommand};
 use inquire::Text;
 use opener;
@@ -16,17 +18,31 @@ pub struct Args {
 pub enum Command {
     #[command(long_about = "This command shows all information")]
     All,
-
     #[command(long_about = "This command shows personal information")]
     PersonalInfo,
     #[command(long_about = "This command shows contact information")]
     ContactInfo,
     #[command(long_about = "This command shows contact information")]
+    ExperienceInfo {
+        #[arg(
+            short,
+            long,
+            help = "Write the number of the experience you want to see"
+        )]
+        number: Option<u32>,
+        #[arg(
+            short,
+            long,
+            help = "Write the number of the experience you want to see"
+        )]
+        details: bool,
+    },
+    #[command(long_about = "This command shows contact information")]
     Contact {
-        #[arg(short, long)]
+        #[arg(short, long, help = "The subject of the email")]
         subject: Option<String>,
 
-        #[arg(short, long)]
+        #[arg(short, long, help = "Your email")]
         email: Option<String>,
     },
 }
@@ -42,10 +58,23 @@ impl Args {
             }
             Command::PersonalInfo => {
                 println!("Showing personal information");
+                PersonalInformation::display_personal_info();
             }
             Command::ContactInfo => {
                 println!("Showing contactInformaion");
+                ContactInformation::display_contact_information();
             }
+            Command::ExperienceInfo { number, details } => match (number, details) {
+                (Some(n), false) => {
+                    Experience::display_experience_by_number(n);
+                }
+                (Some(n), true) => {
+                    Experience::display_detailed_experience(n);
+                }
+                (None, _) => {
+                    Experience::display_experience_information();
+                }
+            },
             Command::Contact { subject, email } => {
                 println!("Contact me");
                 let subject = subject.unwrap_or_else(|| Text::new("Subject:").prompt().unwrap());

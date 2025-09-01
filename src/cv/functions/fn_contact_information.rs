@@ -1,23 +1,20 @@
 use crate::cv::structs::cv_data::ContactInformation;
+use colored::Colorize;
 
 impl ContactInformation {
-    pub fn new(id: u32, email: String, phone_number: String) -> Self {
-        Self {
-            id,
-            email,
-            phone_number,
-        }
+    pub fn new(id: u32, email: String) -> Self {
+        Self { id, email }
     }
-
-    fn c_info() -> ContactInformation {
-        ContactInformation::new(
-            1,
-            "Abarbesgaard@gmail.com".to_string(),
-            "+45 21 76 26 15".to_string(),
-        )
+    fn info() -> ContactInformation {
+        ContactInformation::new(1, "abarbesgaard@gmail.com".to_string())
     }
-
-    pub fn display_widget() {
-        let _info = ContactInformation::c_info();
+    pub fn display_contact_information() {
+        let info = ContactInformation::info();
+        println!("{}", "════════════════════".bold());
+        println!("{}", "Contact Information".bold());
+        println!("{}", "════════════════════\n".bold());
+        println!("\t{}: {}", "Email".bold(), info.email);
+        println!("\t ... or send an email directly using the 'contact' command");
+        println!("\t e.g. portfolio contact");
     }
 }

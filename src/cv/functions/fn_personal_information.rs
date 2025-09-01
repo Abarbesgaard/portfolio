@@ -1,4 +1,6 @@
+use crate::cv::functions::wrap_text;
 use crate::cv::structs::cv_data::PersonalInformation;
+use colored::Colorize;
 
 impl PersonalInformation {
     pub fn new(
@@ -20,20 +22,33 @@ impl PersonalInformation {
             short_description,
         }
     }
-
-    fn p_info() -> PersonalInformation {
+    fn info() -> PersonalInformation {
         PersonalInformation::new(
             1,
             "Andreas".to_string(),
             "Barbesgaard".to_string(),
             "Software Developer".to_string(),
             36,
-            "best dev ever".to_string(),
-            "test short description".to_string(),
+            "C# dev with rusty tendencies".to_string(),
+            " ".to_string(),
         )
     }
+    pub fn display_personal_info() {
+        let info = PersonalInformation::info();
+        println!("{}", "════════════════════".bold());
+        println!("{}", "Personal Information".bold());
+        println!("{}", "════════════════════\n".bold());
 
-    pub fn display_widget() {
-        let _info = PersonalInformation::p_info();
+        println!(
+            "\t{}: {} {}",
+            "Name".bold(),
+            info.first_name,
+            info.last_name
+        );
+
+        println!("\t{}: {}", "Title".bold(), info.title);
+        println!("\t{}: {}", "Age".bold(), info.age);
+        println!("\t{}", wrap_text::wrap_text(&info.short_description, 80));
+        println!();
     }
 }
