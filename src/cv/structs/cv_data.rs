@@ -36,8 +36,15 @@ pub struct PersonalInformation {
     pub age: u8,
     pub tag_line: String,
     pub short_description: String,
+    pub long_description: String,
+    pub bullet_points: Vec<BulletPoint>,
 }
 
+#[derive(Debug)]
+pub struct BulletPoint {
+    pub number: u32,
+    pub description: String,
+}
 #[derive(Debug)]
 pub struct ContactInformation {
     pub id: u32,

@@ -1,10 +1,8 @@
 use crate::cv::structs::cv_data::{
     AllInformation, ContactInformation, Experience, PersonalInformation,
 };
+use crate::start::structs::cover_letter::CoverLetter;
 use clap::{Parser, Subcommand};
-use inquire::Text;
-use opener;
-use urlencoding::encode;
 
 #[derive(Parser, Debug)]
 #[command(name = "Portfolio")]
@@ -17,9 +15,22 @@ pub struct Args {
 #[derive(Subcommand, Debug)]
 pub enum Command {
     #[command(long_about = "This command shows all information")]
+    CoverLetter {
+        #[arg(short, long, help = "Write your company name and start the program")]
+        company_name: Option<String>,
+
+        #[arg(short, long, help = "Write your company name and start the program")]
+        in_english: bool,
+    },
+    #[command(long_about = "This command shows all information")]
+    Start,
+    #[command(long_about = "This command shows all information")]
     All,
     #[command(long_about = "This command shows personal information")]
-    PersonalInfo,
+    PersonalInfo {
+        #[arg(short, long, help = "view detailed description")]
+        details: bool,
+    },
     #[command(long_about = "This command shows contact information")]
     ContactInfo,
     #[command(long_about = "This command shows contact information")]
@@ -52,14 +63,32 @@ impl Args {
         let args = Args::parse();
 
         match args.command {
+            Command::Start => {
+                println!("Introduction!");
+                println!("Welcome to my application for the job as [resume.company.job_position]!");
+            }
+            Command::CoverLetter {
+                company_name,
+                in_english,
+            } => {
+                if let Some(company) = company_name {
+                    CoverLetter::display_coverletter(&company, in_english);
+                } else {
+                    println!("Write a proper company name");
+                }
+            }
             Command::All => {
                 println!("Showing all information");
                 AllInformation::display();
             }
-            Command::PersonalInfo => {
-                println!("Showing personal information");
-                PersonalInformation::display_personal_info();
-            }
+            Command::PersonalInfo { details } => match details {
+                true => {
+                    PersonalInformation::display_personal_info_with_details();
+                }
+                false => {
+                    PersonalInformation::display_personal_info();
+                }
+            },
             Command::ContactInfo => {
                 println!("Showing contactInformaion");
                 ContactInformation::display_contact_information();
@@ -76,22 +105,7 @@ impl Args {
                 }
             },
             Command::Contact { subject, email } => {
-                println!("Contact me");
-                let subject = subject.unwrap_or_else(|| Text::new("Subject:").prompt().unwrap());
-                let sender = email.unwrap_or_else(|| Text::new("Your email:").prompt().unwrap());
-                let body = Text::new("Message:").prompt().unwrap();
-                let formatted_body = format!("From: {}\n\r\n{}", sender, body);
-                let subject_enc = encode(&subject);
-                let body_enc = encode(&formatted_body);
-                let mailto = format!(
-                    "mailto:me@example.com?subject={}&body={}",
-                    subject_enc, body_enc
-                );
-
-                println!("Opening mail client...");
-                if let Err(e) = opener::open(&mailto) {
-                    eprintln!("Could not open mail client: {e}");
-                }
+                ContactInformation::contact(subject, email);
             }
         }
     }

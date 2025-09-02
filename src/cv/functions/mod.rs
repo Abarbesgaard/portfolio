@@ -1,7 +1,7 @@
-pub mod fn_all_information;
-pub mod fn_contact_information;
-pub mod fn_experience;
-pub mod fn_link;
-pub mod fn_personal_information;
-pub mod fn_skill;
+pub mod all_information;
+pub mod contact_information;
+pub mod experience;
+pub mod link;
+pub mod personal_information;
+pub mod skill;
 pub mod wrap_text;
