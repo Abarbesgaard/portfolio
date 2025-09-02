@@ -22,6 +22,12 @@ pub enum Command {
         #[arg(short, long, help = "Write your company name and start the program")]
         in_english: bool,
     },
+
+    #[command(long_about = "This command shows all information")]
+    Portfolio {
+        #[arg(short, long, help = "view detailed description")]
+        details: bool,
+    },
     #[command(long_about = "This command shows all information")]
     Start,
     #[command(long_about = "This command shows all information")]
@@ -63,6 +69,14 @@ impl Args {
         let args = Args::parse();
 
         match args.command {
+            Command::Portfolio { details } => match details {
+                true => {
+                    println!("portfolio with details");
+                }
+                false => {
+                    println!("portfolio without details");
+                }
+            },
             Command::Start => {
                 println!("Welcome to my Portfolio CLI!");
                 println!("This application gives you a quick glance at my CV, experience, and contact information.");
