@@ -1,5 +1,5 @@
 use crate::cv::structs::cv_data::{
-    AllInformation, ContactInformation, Experience, PersonalInformation,
+    AllInformation, ContactInformation, Experience, Link, PersonalInformation,
 };
 use crate::start::functions::start::start;
 use crate::start::structs::cover_letter::CoverLetter;
@@ -72,10 +72,10 @@ impl Args {
         match args.command {
             Command::Portfolio { details } => match details {
                 true => {
-                    println!("portfolio with details");
+                    Link::display_with_details();
                 }
                 false => {
-                    println!("portfolio without details");
+                    Link::display();
                 }
             },
             Command::Start => {
