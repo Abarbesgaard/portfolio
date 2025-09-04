@@ -1,6 +1,7 @@
 use colored::Colorize;
 
-use crate::cv::{functions::wrap_text::wrap_text, structs::cv_data::Link};
+use crate::cv::{functions::helper::wrap_text, structs::link::Link};
+
 impl Link {
     fn banner() {
         println!("My Portfolio");
@@ -12,7 +13,11 @@ impl Link {
         for link in links {
             println!("{}{}", indentation, link.name.bold());
             println!("{}{}", indentation, link.reference);
-            println!("{}{}", indentation, wrap_text(&link.short_description, 80));
+            println!(
+                "{}{}",
+                indentation,
+                wrap_text::wrap_text(&link.short_description, 80)
+            );
             println!();
         }
     }
@@ -24,7 +29,11 @@ impl Link {
         for link in links {
             println!("{}{}", indentation, link.name.bold());
             println!("{}{}", indentation, link.reference);
-            println!("{}{}", indentation, wrap_text(&link.long_description, 80));
+            println!(
+                "{}{}",
+                indentation,
+                wrap_text::wrap_text(&link.long_description, 80)
+            );
             println!();
         }
     }

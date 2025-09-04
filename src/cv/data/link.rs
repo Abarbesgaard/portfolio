@@ -1,4 +1,4 @@
-use crate::cv::structs::cv_data::Link;
+use crate::cv::structs::link::Link;
 
 impl Link {
     pub fn new(
@@ -7,7 +7,7 @@ impl Link {
         reference: String,
         short_description: String,
         long_description: String,
-    ) -> Link {
+    ) -> Self {
         Link {
             id,
             name,

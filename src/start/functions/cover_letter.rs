@@ -1,5 +1,5 @@
 use crate::{
-    cv::functions::wrap_text::wrap_text,
+    cv::functions::helper::wrap_text::wrap_text,
     start::structs::cover_letter::{Company, CoverLetter, Paragraf, Person},
 };
 

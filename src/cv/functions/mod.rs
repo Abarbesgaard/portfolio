@@ -1,7 +1,9 @@
 pub mod all_information;
-pub mod contact_information;
+pub mod contact;
+pub mod education;
 pub mod experience;
+pub mod helper;
 pub mod link;
 pub mod personal_information;
 pub mod skill;
-pub mod wrap_text;
+pub mod traits;

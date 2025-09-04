@@ -1,9 +1,10 @@
-use crate::cv::functions::wrap_text;
-use crate::cv::structs::cv_data::Experience;
+use crate::cv::functions::helper::wrap_text;
+use crate::cv::functions::traits::Display;
+use crate::cv::structs::experience::Experience;
 use colored::Colorize;
 
-impl Experience {
-    pub fn display_experience_information() {
+impl Display for Experience {
+    fn display() {
         let experience_list = Experience::info();
         println!("{}", "═══════════".bold());
         println!("{}", "Experience".bold());
@@ -43,7 +44,11 @@ impl Experience {
             println!("\t┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈");
         }
     }
-
+    fn display_with_details() {
+        todo!("not implemented");
+    }
+}
+impl Experience {
     pub fn display_experience_by_number(number: u32) {
         let experience_list = Experience::info();
 

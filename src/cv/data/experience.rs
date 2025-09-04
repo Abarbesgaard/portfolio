@@ -1,4 +1,5 @@
-use crate::cv::structs::cv_data::{Experience, Link, Skill};
+use crate::cv::structs::{experience::Experience, link::Link, skill::Skill};
+
 impl Experience {
     pub fn new(
         id: u32,

@@ -1,32 +1,11 @@
-use crate::cv::functions::wrap_text;
-use crate::cv::structs::cv_data::{BulletPoint, PersonalInformation};
-use colored::Colorize;
+use crate::cv::functions::helper::wrap_text;
+use crate::cv::functions::traits::Display;
+use crate::cv::structs::bullet_point::BulletPoint;
+use crate::cv::structs::personalinformation::PersonalInformation;
 
-impl PersonalInformation {
-    pub fn new(
-        id: u32,
-        first_name: String,
-        last_name: String,
-        title: String,
-        age: u8,
-        tag_line: String,
-        short_description: String,
-        long_description: String,
-        bullet_points: Vec<BulletPoint>,
-    ) -> Self {
-        Self {
-            id,
-            first_name,
-            last_name,
-            title,
-            age,
-            tag_line,
-            short_description,
-            long_description,
-            bullet_points,
-        }
-    }
-    pub fn display_personal_info() {
+use colored::Colorize;
+impl Display for PersonalInformation {
+    fn display() {
         let info = PersonalInformation::info();
         println!("{}", "════════════════════".bold());
         println!("{}", "Personal Information".bold());
@@ -44,7 +23,7 @@ impl PersonalInformation {
         println!("\t{}", wrap_text::wrap_text(&info.short_description, 80));
         println!();
     }
-    pub fn display_personal_info_with_details() {
+    fn display_with_details() {
         let info = PersonalInformation::info();
 
         println!("{}", "════════════════════".bold());
@@ -73,6 +52,31 @@ impl PersonalInformation {
                 );
             }
             println!();
+        }
+    }
+}
+impl PersonalInformation {
+    pub fn new(
+        id: u32,
+        first_name: String,
+        last_name: String,
+        title: String,
+        age: u8,
+        tag_line: String,
+        short_description: String,
+        long_description: String,
+        bullet_points: Vec<BulletPoint>,
+    ) -> Self {
+        Self {
+            id,
+            first_name,
+            last_name,
+            title,
+            age,
+            tag_line,
+            short_description,
+            long_description,
+            bullet_points,
         }
     }
 }

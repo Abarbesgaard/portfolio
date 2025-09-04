@@ -1,7 +1,7 @@
-use crate::cv::structs::cv_data::{BulletPoint, PersonalInformation};
+use crate::cv::structs::{bullet_point::BulletPoint, personalinformation::PersonalInformation};
 
 impl PersonalInformation {
-    pub fn info() -> PersonalInformation {
+    pub fn info() -> Self {
         PersonalInformation {
             id: 1,
             first_name: "Andreas".to_string(),
@@ -28,4 +28,3 @@ I thrive in teams where curiosity, feedback, and innovation drive the process â€
         }
     }
 }
-

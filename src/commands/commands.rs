@@ -1,6 +1,8 @@
-use crate::cv::structs::cv_data::{
-    AllInformation, ContactInformation, Experience, Link, PersonalInformation,
-};
+use crate::cv::structs::all_information::AllInformation;
+use crate::cv::structs::contact_information::ContactInformation;
+use crate::cv::structs::experience::Experience;
+use crate::cv::structs::personalinformation::PersonalInformation;
+use crate::cv::{functions::traits::Display, structs::link::Link};
 use crate::start::functions::start::start;
 use crate::start::structs::cover_letter::CoverLetter;
 use clap::{Parser, Subcommand};
@@ -97,15 +99,15 @@ impl Args {
             }
             Command::PersonalInfo { details } => match details {
                 true => {
-                    PersonalInformation::display_personal_info_with_details();
+                    PersonalInformation::display_with_details();
                 }
                 false => {
-                    PersonalInformation::display_personal_info();
+                    PersonalInformation::display();
                 }
             },
             Command::ContactInfo => {
                 println!("Showing contactInformaion");
-                ContactInformation::display_contact_information();
+                ContactInformation::display();
             }
             Command::ExperienceInfo { number, details } => match (number, details) {
                 (Some(n), false) => {
@@ -115,7 +117,7 @@ impl Args {
                     Experience::display_detailed_experience(n);
                 }
                 (None, _) => {
-                    Experience::display_experience_information();
+                    Experience::display();
                 }
             },
             Command::Contact { subject, email } => {

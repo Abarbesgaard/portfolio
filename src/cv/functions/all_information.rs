@@ -1,11 +1,19 @@
-use crate::cv::structs::cv_data::{
-    AllInformation, ContactInformation, Experience, PersonalInformation,
+use crate::cv::{
+    functions::traits::Display,
+    structs::{
+        all_information::AllInformation, contact_information::ContactInformation,
+        experience::Experience, personalinformation::PersonalInformation,
+    },
 };
 
-impl AllInformation {
-    pub fn display() {
-        PersonalInformation::display_personal_info();
-        Experience::display_experience_information();
-        ContactInformation::display_contact_information();
+impl Display for AllInformation {
+    fn display() {
+        PersonalInformation::display();
+        Experience::display();
+        ContactInformation::display();
+    }
+
+    fn display_with_details() {
+        todo!();
     }
 }
