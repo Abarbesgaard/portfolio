@@ -1,5 +1,6 @@
 use crate::cv::structs::all_information::AllInformation;
 use crate::cv::structs::contact_information::ContactInformation;
+use crate::cv::structs::education::Education;
 use crate::cv::structs::experience::Experience;
 use crate::cv::structs::personalinformation::PersonalInformation;
 use crate::cv::{functions::traits::Display, structs::link::Link};
@@ -35,6 +36,12 @@ pub enum Command {
     Start,
     #[command(long_about = "This command shows all information")]
     All,
+    #[command(long_about = "This command shows personal information")]
+    Education {
+        #[arg(short, long, help = "view detailed description")]
+        details: bool,
+    },
+
     #[command(long_about = "This command shows personal information")]
     PersonalInfo {
         #[arg(short, long, help = "view detailed description")]
@@ -72,6 +79,14 @@ impl Args {
         let args = Args::parse();
 
         match args.command {
+            Command::Education { details } => match details {
+                true => {
+                    Education::display_with_details();
+                }
+                false => {
+                    Education::display();
+                }
+            },
             Command::Portfolio { details } => match details {
                 true => {
                     Link::display_with_details();

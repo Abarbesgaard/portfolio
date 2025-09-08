@@ -14,6 +14,8 @@ impl Display for AllInformation {
     }
 
     fn display_with_details() {
-        todo!();
+        PersonalInformation::display_with_details();
+        Experience::display_with_details();
+        ContactInformation::display_with_details();
     }
 }
