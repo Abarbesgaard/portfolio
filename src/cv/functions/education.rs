@@ -21,6 +21,16 @@ impl Display for Education {
     }
 
     fn display_with_details() {
-        todo!("not implemented");
+        let info = Education::info();
+        for (index, education) in info.iter().enumerate() {
+            print!("{} ", index);
+            println!("{}", education.name.bold());
+            println!("\t{}", wrap_text(&education.description, 81));
+            for (index, skill) in education.skills.iter().enumerate() {
+                print!("\t\t{}: ", index);
+                println!("{}", skill.name);
+            }
+            println!("");
+        }
     }
 }
